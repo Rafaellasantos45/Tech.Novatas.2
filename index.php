@@ -1,16 +1,16 @@
 <?php
 
 // Variáveis:
-$cor_da_casa = 'red';
-$Cor_da_casa = 'lilaz';
-$casa_vendida = true;
+$cor_da_casa = "red"; // String
+$Cor_da_casa = 'lilaz'; // String
+$casa_vendida = true; // Booleana (true | False)
+$numero_da_casa = 25; // Number
 
 // Constante:
 define('NUMERO_DA_CASA', 25);
 
 // Outra variável:
 $corDaCasa = 'azul';
-
 
 ?>
 <!DOCTYPE html>
@@ -24,14 +24,14 @@ $corDaCasa = 'azul';
 
 <body>
 
-    <?php // Minha senha é 'biscoito' 
-    ?>
-
     <h1>Olá mundo do PHP!</h1>
 
     <?php echo 'Olá mundo!' ?>
 
     <?php
+
+    // Comentário de uma linha
+
     /*
         Isso é um
         comentário com
@@ -81,18 +81,19 @@ $corDaCasa = 'azul';
 <p style="color:red">{$cor_da_casa}</p> 
 SQL;
 
-// Define uma função
-function soma($val1, $val2) {
-    $resultado = $val1 + $val2;
-    return $resultado;
-}
+    // Define uma função
+    function soma($val1, $val2)
+    {
+        $resultado = $val1 + $val2;
+        return $resultado;
+    }
 
-// Invocar função
-echo soma(10, 5);
+    // Invocar função
+    echo soma(10, 5);
 
     ?>
-<hr>
-<?php echo soma(2,50); ?>
+    <hr>
+    <?php echo soma(2, 50); ?>
 
 </body>
 
