@@ -47,7 +47,7 @@ CREATE TABLE users (
     -- Formato do tipo DATETIME → AAAA-MM-DD HH:II:SS.
     -- DATETIME pode ser NULL, já TIMESTAMP não pode.
     last_login DATETIME,
-    ustatus ENUM('online', 'offline', 'deleted') DEFAULT 'online'
+    ustatus ENUM('online', 'offline', 'deleted', 'banned') DEFAULT 'online'
 );
 
 -- Cadastra alguns usuários para testes:
@@ -120,6 +120,7 @@ VALUES (
         'Um dos maiores inimigos do Pernalonga.',
         'author'
     );
+
 -- Cria tabela articles:
 CREATE TABLE articles (
     aid INT PRIMARY KEY AUTO_INCREMENT,
