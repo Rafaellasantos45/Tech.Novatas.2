@@ -24,7 +24,12 @@ $output = '
 <hr>
 ';
 
-// Monta a query que obtém TODOS os usuários válidos:
+/**
+ * Monta a query que obtém TODOS os usuários válidos:
+ * Referências:
+ *  • https://www.w3schools.com/mysql/default.asp → 
+ *  • https://www.w3schools.com/php/php_mysql_intro.asp → 
+ **/
 $sql = <<<SQL
 
 SELECT uid, name, email, 
@@ -35,8 +40,12 @@ FROM users
 WHERE ustatus != 'deleted';
 
 SQL;
- 
-// Executa a query:
+
+/**
+ * Executa a query e guarda os dados obtidos na variável '$res':
+ * Referências:
+ *  • https://www.w3schools.com/php/php_mysql_select.asp
+ **/
 $res = $conn->query($sql);
 
 /**
@@ -80,7 +89,7 @@ else :
         </td>
     </tr>
 
-HTML;        
+HTML;
 
     endwhile;
 

@@ -19,36 +19,53 @@ require('includes/config.php');
  **/
 $output = '<a href="/readall.php">Listar</a> | <a href="/create.php">Cadastrar</a><hr>';
 
-// Obtém o Id do usuário da URL:
+/**
+ * Obtém o Id do usuário da URL:
+ * Referêcias: 
+ *  • https://www.w3schools.com/php/func_var_intval.asp
+ *  • https://www.w3schools.com/php/php_superglobals.asp
+ *  • https://www.w3schools.com/php/php_superglobals_server.asp
+ **/
 $id = intval($_SERVER['QUERY_STRING']);
 
-// Verifica de o Id obtido é um número:
+// Se não forneceu um Id ou este não é um número...
 if ($id == 0) :
-    // Exibe mensagem de erro e encerra o programa:
+
+    // ... exibe mensagem de erro e encerra o programa:
     $output .= "<p>Oooops! Acesso inválido...";
 
+// Se forneceu um Id válido...
 else :
 
-    // Monta a query de consulta:
+    /**
+     * Monta a query de consulta:
+     * Referências:
+     *  • https://www.w3schools.com/mysql/default.asp → 
+     *  • https://www.w3schools.com/php/php_mysql_intro.asp → 
+     **/
     $sql = <<<SQL
 
 -- Obtém todos os campos com dados do usuário.
 SELECT *,
-    -- Formata a data de cadastro do usuário e envia como udatebr.
+    -- Obtém a data de cadastro, formata e envia como 'udatebr'.
     DATE_FORMAT(udate, '%d/%m/%Y às %H:%i') AS udatebr,
-    -- Formata a data de aniversário e envia como birthbr.
+    -- Obtém a data de aniversário, formata e envia como 'birthbr'.
     DATE_FORMAT(birth, '%d/%m/%Y') AS birthbr,
-    -- Formata a data do último login do usuário e envia como last_loginbr.
+    -- Obtém a data do último login, formata e envia como 'last_loginbr'.
     DATE_FORMAT(last_login, '%d/%m/%Y às %H:%i') AS last_loginbr
 FROM users
 -- Filtra o usuário pelo ID...
 WHERE uid = '{$id}'
-    -- e, somente se o usuário não está apagado.
+    -- ... E, somente se o usuário não está apagado.
     AND ustatus != 'deleted';
 
 SQL;
 
-    // Executa a query e guarda os dados obtidos na variável $res:
+    /**
+     * Executa a query e guarda os dados obtidos na variável '$res':
+     * Referências:
+     *  • https://www.w3schools.com/php/php_mysql_select.asp
+     **/
     $res = $conn->query($sql);
 
     // Se não retornou um (e apenas um) usuário, exibe mensagem de erro:
@@ -62,7 +79,11 @@ SQL;
         // Extrai os dados do usuário e guarda em $user:
         $user = $res->fetch_assoc();
 
-        // Traduz o campo "type" para português e armazena em "$tipo":
+        /**
+         * Traduz o "type" para português e armazena em "$tipo":
+         * Referências:
+         *  • https://www.w3schools.com/php/php_switch.asp
+         **/
         switch ($user['type']):
 
             case 'admin': // Traduz isso...
@@ -83,7 +104,11 @@ SQL;
 
         endswitch;
 
-        // Tradus o status para português e armazena em $status:
+        /**
+         * Tradus o status para português e armazena em '$status':
+         * Referências:
+         *  • https://www.w3schools.com/php/func_string_str_replace.asp
+         **/
         $status = $user['ustatus'];
         $from = array('online', 'offline', 'deleted', 'banned');
         $to = array('disponível', 'indisponível', 'apagado', 'banido');
@@ -103,7 +128,7 @@ SQL;
 
         endif;
 
-        // Se achou o usuário, exibe os dados dele:
+        // Se achou o usuário, exibe os dados dele em HTML, usando 'Heredoc':
         $output .= <<<HTML
 
 <img src="{$user['photo']}" alt="{$user['name']}">
@@ -126,5 +151,9 @@ HTML;
 
 endif;
 
-// Exibe as mensagens de saída e encerra o programa:
+/**
+ * Exibe as mensagens de saída e encerra o programa:
+ * Referências:
+ *  • https://www.w3schools.com/php/php_echo_print.asp
+ **/
 echo $output;
