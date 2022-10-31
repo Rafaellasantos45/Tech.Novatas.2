@@ -11,7 +11,7 @@ require('includes/config.php');
 $page_title = 'Artigos recentes';
 
 // Define o conteúdo da página:
-$page_content = "";
+$page_content = "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat id repellat unde vitae corrupti in laudantium pariatur possimus exercitationem inventore rerum praesentium quis veniam incidunt dolorum, animi accusamus itaque iusto.</p>";
 
 /****************************************************
  * Todos os códigos PHP desta página TERMINAM aqui! *
