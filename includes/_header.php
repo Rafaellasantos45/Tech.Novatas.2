@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Tech.Novatas - <?php echo $page_title ?></title>
 </head>
 
@@ -18,9 +19,9 @@
         <nav>
             <hr>
             <a href="/">Início</a>
-            <a href="/contacts.php">Contatos</a>
-            <a href="/about.php">Sobre</a>
-            <a href="/policies.php">Privacidade</a>
+            <a href="/contacts">Contatos</a>
+            <a href="/about">Sobre</a>
+            <a href="/policies">Privacidade</a>
             <hr>
         </nav>
 
