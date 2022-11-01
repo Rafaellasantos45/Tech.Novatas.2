@@ -62,3 +62,31 @@ function dt_convert($date, $format = 'Y-m-d H:i:s')
     $d = date_create($date);
     return date_format($d, $format);
 }
+
+// Calcula a idade com base na data de nascimento:
+function agecalc($birth)
+{
+    // Inicializa a variável com a idade:
+    $age = 0;
+
+    // Extrai as partes da data (ano, mês e dia):
+    list($year, $month, $day) = explode('-', $birth);
+
+    // Calcula a idade pelo ano:
+    $age = date("Y") - $year;
+
+    // Se o mês de nascimento é maior que o mês atual...
+    if (date("m") < $month)
+
+        // Subtrai 1 ano. Ainda não fez aniversário:
+        $age -= 1;
+
+    // Porém, se o mês de aniversário é o mês atual E dia de aniversário é que o dia atual...
+    elseif ((date("m") == $month) and (date("d") <= $day))
+
+        // Subtrai 1 ano. Ainda não fez aniversário:
+        $age -= 1;
+
+    // Retorna a idade:
+    return $age;
+}

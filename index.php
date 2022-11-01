@@ -20,7 +20,7 @@ WHERE astatus = 'online'
     -- E somente artigos com data no passado:
     AND adate <= NOW()
 
--- Ordenado pela data de publicação mais recente:
+-- Ordenados pela data de publicação mais recente:
 ORDER BY adate DESC;
 
 SQL;
@@ -40,8 +40,8 @@ else :
     // Loop para obter cada artigo:
     while ($art = $res->fetch_assoc()) :
 
-       // Formata a lista dos artigos:
-       $page_content .= <<<HTML
+        // Formata a lista dos artigos e concatena em $page_content:
+        $page_content .= <<<HTML
 
 <div>
     <img src="{$art['thumbnail']}" alt="{$art['title']}">
@@ -52,6 +52,7 @@ else :
 
 HTML;
 
+    // Fim do loop:
     endwhile;
 
 endif;
