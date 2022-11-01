@@ -1,7 +1,7 @@
 <?php
 
 // Inicializa variáveis importantes:
-$page_title = $page_content = '';
+$page_title = $page_content = $author_articles = '';
 
 // Dados para conexão com MySQL/MariaDB e database:
 $hostname = 'localhost';
@@ -44,4 +44,21 @@ function debug($var, $exit = true, $dump = false)
     else print_r($var);
     echo '</pre>';
     if ($exit) exit();
+}
+
+/**
+ * Converte uma data para outro formato:
+ * Exemplos:
+ *      dt_convert('2022-10-31');
+ *      dt_convert('2022-10-31', 'd/m/Y');
+ *      dt_convert('31-10-2022', 'Y-m-d');
+ *      dt_convert('31/10/2022 12:34:59', 'Y-m-d H:i');
+ * Formato padrão, se omitido ◄───────────┐
+ *                                        ▼
+ **/
+function dt_convert($date, $format = 'Y-m-d H:i:s')
+{
+    $date = str_replace('/', '-', $date);
+    $d = date_create($date);
+    return date_format($d, $format);
 }
